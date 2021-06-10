@@ -40,6 +40,17 @@ public class SeleniumUtils {
         return element;
     }
 
+    public boolean isElementVisible(WebElement element){
+        try {
+            webDriverWait.until(ExpectedConditions.visibilityOf(element));
+            printToLog(Status.PASS, element.toString() + " element is visible.");
+            return true;
+        }catch (Exception e){
+            printToLog(Status.PASS, element.toString() + " element not visible." + e.getMessage());
+            return false;
+        }
+    }
+
     public void clickOnElement(WebElement element){
         try {
             verifyElementIsVisible(element).click();
@@ -58,12 +69,22 @@ public class SeleniumUtils {
         }
     }
 
-    public void hardAssert(boolean condition, String description){
+    public void hardAssert(boolean assertion, String description){
 
-        if(!condition){
+        if(!assertion){
             printToLog(Status.FAIL, description);
             Assertions.fail(description);
+        }else {
+            printToLog(Status.PASS, description );
         }
+    }
+
+    public void softAssert(boolean assertion, String description){
+        if(!assertion)
+            printToLog(Status.WARNING, description);
+        else
+            printToLog(Status.PASS, description );
+
     }
 
     public void printToLog(Status status, String message){

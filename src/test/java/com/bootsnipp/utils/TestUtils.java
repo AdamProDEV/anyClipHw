@@ -31,4 +31,9 @@ public class TestUtils extends TestBase {
         }
     }
 
+    public void _step(String step){
+        seleniumUtils.printToLog(Status.PASS, "<b>Step: </b>" + step + ". " + seleniumUtils.getWebDriver().getCurrentUrl());
+    }
+
+
 }
