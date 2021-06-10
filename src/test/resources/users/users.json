@@ -1,0 +1,13 @@
+{
+  "users": [
+    {
+      "email": "dushawn1@productzf.com",
+      "password": "dushawn1"
+    },
+
+    {
+      "email": "incorrect@email.com",
+      "password": "password"
+    }
+  ]
+}

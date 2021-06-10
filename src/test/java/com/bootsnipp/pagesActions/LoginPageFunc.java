@@ -1,11 +1,16 @@
 package com.bootsnipp.pagesActions;
 
 import com.bootsnipp.utils.TestUtils;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.File;
 
 public class LoginPageFunc extends TestUtils {
 
-    public void loginToWebSite(String email, String password){
+    public void loginViaForm(String email, String password){
 
-        seleniumUtils.verifyElementIsVisible(pages.loginPage.fldEmail);
+        seleniumUtils.sendTextToElement(pages.loginPage.fldEmail, email);
+        seleniumUtils.sendTextToElement(pages.loginPage.fldPassword, password);
     }
 }

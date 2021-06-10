@@ -30,21 +30,31 @@ public class SeleniumUtils {
         webDriver.get(webPage);
     }
 
-    public void verifyElementIsVisible(WebElement element){
+    public WebElement verifyElementIsVisible(WebElement element){
         try {
             webDriverWait.until(ExpectedConditions.visibilityOf(element));
             printToLog(Status.PASS, element.toString() + " element is visible.");
         }catch (Exception e){
             printToLog(Status.WARNING, element.toString() + " element not visible. " + e);
         }
+        return element;
     }
 
     public void clickOnElement(WebElement element){
         try {
-            webDriverWait.until(ExpectedConditions.visibilityOf(element)).click();
+            verifyElementIsVisible(element).click();
             printToLog(Status.PASS, element + " element successful clicked.");
         }catch (Exception e){
             hardAssert(false, element + " Failed click on element. " + e);
+        }
+    }
+
+    public void sendTextToElement(WebElement element, String text){
+        try {
+            verifyElementIsVisible(element).sendKeys(text);
+            printToLog(Status.PASS, element + " text: " + text + " , successful sent");
+        }catch (Exception e){
+            hardAssert(false, element + " Failed to send text: " + text + " . "  + e);
         }
     }
 
