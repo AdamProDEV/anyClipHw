@@ -9,16 +9,18 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.File;
+import java.util.*;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class RegressionTest extends TestUtils {
 
+    //----------------- 1.Create a Selenium test for testing login page. -------------------------------------
     @Test
     @Order(1)
     @DisplayName("Login to website without 'remember me'")
-    public void performLoginWithoutRememberOptionTest(){
+    public void performLoginWithoutRememberOptionTest() {
 
         siteActions.loginToWebSiteFlow.performLoginWithoutRememberOption();
     }
@@ -26,7 +28,7 @@ public class RegressionTest extends TestUtils {
     @Test
     @Order(2)
     @DisplayName("Login to website with 'remember me'")
-    public void performLoginWithRememberOptionTest(){
+    public void performLoginWithRememberOptionTest() {
 
         siteActions.loginToWebSiteFlow.performLoginWithRememberOption();
     }
@@ -34,7 +36,7 @@ public class RegressionTest extends TestUtils {
     @Order(3)
     @ParameterizedTest
     @MethodSource("jsonData")
-    void allUsersLoginTest(JsonNode user) {
+    public void allUsersLoginTest(JsonNode user) {
 
         _step("Go to login page and perform login without remember checkbox");
         siteActions.homePageFunc.selectActionFromToolBarMenu("login");
@@ -50,11 +52,33 @@ public class RegressionTest extends TestUtils {
 
     }
 
-    private static Stream jsonData() throws Exception{
+    //this method used in allUsersLoginTest
+    private static Stream jsonData() throws Exception {
 
         return StreamSupport
                 .stream((new ObjectMapper()).readTree(new File("src/test/resources/users/users.json"))
                         .path("users").spliterator(), false);
     }
 
+    //----------- 2.Function should return the value n! -------------
+    // todo, I didn't understand
+    //----------3.Write a function that returns a random number from 1-1000 without repeating the same number more than once. ----
+
+
+    @Test
+    public void getRandomNumberWithoutRepeating() {
+
+        //Create list
+        List<Integer> ints = new ArrayList<>(1000);
+        //add numbers 1-1000
+        for (int i = 1; i <= 1000; i++)
+            ints.add(i);
+        //shuffle the list to be in random order
+        Collections.shuffle(ints);
+        //now you can get first number and remove him from list for non chance to get same number next time
+        System.out.println("Return removed number: " + ints.remove(0));
+
+    }
 }
+
+
