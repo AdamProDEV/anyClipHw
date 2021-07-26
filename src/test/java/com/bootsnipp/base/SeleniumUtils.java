@@ -84,8 +84,47 @@ public class SeleniumUtils {
             printToLog(Status.PASS, element + " text: " + text + " , successful sent");
             printToLog(Status.PASS, MediaEntityBuilder.createScreenCaptureFromPath(takeScreenshot()).build());
         } catch (Exception e) {
-            printToLog(Status.PASS, MediaEntityBuilder.createScreenCaptureFromPath(takeScreenshot()).build());
+            printToLog(Status.WARNING, MediaEntityBuilder.createScreenCaptureFromPath(takeScreenshot()).build());
             hardAssert(false, element + " Failed to send text: " + text + " . " + e);
+        }
+    }
+
+    public void scrollDownByPixels(int pixels){
+
+        try {
+            js.executeScript("window.scrollBy(0," + pixels + ")");
+            printToLog(Status.PASS, "Scroll down by " + pixels + " successful done");
+            printToLog(Status.PASS, MediaEntityBuilder.createScreenCaptureFromPath(takeScreenshot()).build());
+        }catch (Exception e){
+            printToLog(Status.WARNING, MediaEntityBuilder.createScreenCaptureFromPath(takeScreenshot()).build());
+            hardAssert(false, "Scroll down by " + pixels + " failed. " + e);
+
+        }
+    }
+
+    public void scrollToElement(WebElement element){
+
+        try {
+            js.executeScript("arguments[0].scrollIntoView();", element);
+            printToLog(Status.PASS, "Scroll down to " + element + " successful done");
+            printToLog(Status.PASS, MediaEntityBuilder.createScreenCaptureFromPath(takeScreenshot()).build());
+        }catch (Exception e){
+            printToLog(Status.WARNING, MediaEntityBuilder.createScreenCaptureFromPath(takeScreenshot()).build());
+            hardAssert(false, "Scroll down to " + element + " failed. " + e);
+
+        }
+    }
+
+    public void scrollDownAtTheBottomOfThePage(){
+
+        try {
+            js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+            printToLog(Status.PASS, "Scroll at the bottom of the page successful done");
+            printToLog(Status.PASS, MediaEntityBuilder.createScreenCaptureFromPath(takeScreenshot()).build());
+        }catch (Exception e){
+            printToLog(Status.WARNING, MediaEntityBuilder.createScreenCaptureFromPath(takeScreenshot()).build());
+            hardAssert(false, "Scroll at the bottom of the page failed" + e);
+
         }
     }
 
