@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 public class SapirSolutions {
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/sapirSolutions/ford_escort.csv", numLinesToSkip = 0)
+    @CsvFileSource(resources = "/sapirSolutions/ford_escort.csv", numLinesToSkip = 1)
     void runTestOnCsvData(String year, String mileage, String price){
 
         System.out.println(year + ", " + mileage + ", " + price);

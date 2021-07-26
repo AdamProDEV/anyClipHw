@@ -21,12 +21,12 @@ public class LoginToWebSiteFlow extends TestUtils {
         seleniumUtils.softAssert(pages.userProfilePage.txtTitle.getText().trim().contains("My snippets"),
                 "Title have to be: 'My snippets'");
 
-        _step("Verify remember me does not work.");
-        _step("Verify remember work.");
-        seleniumUtils.hardAssert(
-                seleniumUtils.getWebDriver().manage().getCookies().stream().noneMatch(cookie -> cookie.getName().contains("remember")),
-                "Cookies have not to be contains name 'remember'"
-        );
+//        _step("Verify remember me does not work.");
+//        _step("Verify remember work.");
+//        seleniumUtils.hardAssert(
+//                seleniumUtils.getWebDriver().manage().getCookies().stream().noneMatch(cookie -> cookie.getName().contains("remember")),
+//                "Cookies have not to be contains name 'remember'"
+//        );
     }
 
     public void performLoginWithRememberOption(){

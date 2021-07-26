@@ -2,6 +2,7 @@ package com.bootsnipp.base.extentReports;
 
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.model.Media;
 
 public class ExtentReporter {
 
@@ -15,5 +16,9 @@ public class ExtentReporter {
     public static void logToReport(Status status, String message){
 
         extentTest.log(status, message);
+    }
+    public static void logToReport(Status status, Media media){
+
+        extentTest.log(status, media);
     }
 }
